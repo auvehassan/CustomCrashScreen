@@ -6,7 +6,7 @@ class ThisApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        GlobalExceptionHandler.initialize(this, CrashActivity::class.java)
+        ApplicationExceptionHandler.initialize(this, CrashActivity::class.java)
     }
 
 }

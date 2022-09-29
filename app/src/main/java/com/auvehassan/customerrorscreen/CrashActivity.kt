@@ -16,7 +16,7 @@ class CrashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCrashBinding.inflate(layoutInflater)
-        GlobalExceptionHandler.getThrowableFromIntent(intent).let {
+        ApplicationExceptionHandler.getThrowableFromIntent(intent).let {
             Log.e(TAG, "Error: $it")
         }
         setOnClickListeners()

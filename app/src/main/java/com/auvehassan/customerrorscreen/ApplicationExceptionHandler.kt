@@ -19,7 +19,7 @@ import kotlin.system.exitProcess
  * Gson().fromJSON(str,Throwable::class.java) function.
  */
 
-class GlobalExceptionHandler private constructor(
+class ApplicationExceptionHandler private constructor(
     private val applicationContext: Context,
     private val defaultHandler: Thread.UncaughtExceptionHandler,
     private val activityToBeLaunched: Class<*>
@@ -53,7 +53,7 @@ class GlobalExceptionHandler private constructor(
             applicationContext: Context,
             activityToBeLaunched: Class<*>
         ) {
-            val handler = GlobalExceptionHandler(
+            val handler = ApplicationExceptionHandler(
                 applicationContext,
                 Thread.getDefaultUncaughtExceptionHandler() as Thread.UncaughtExceptionHandler,
                 activityToBeLaunched
