@@ -1,4 +1,4 @@
-##CustomCrashScreen
+## CustomCrashScreen
  
  - ***MainAcrivity.kt*** that throws an error(crash) by a button click
  
