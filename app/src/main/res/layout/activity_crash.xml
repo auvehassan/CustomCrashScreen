@@ -5,65 +5,66 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".CrashActivity">
+    android:orientation="vertical">
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/_56dp"
+        android:layout_height="@dimen/_56dp"
         android:src="@android:drawable/stat_notify_error"
-        app:tint="@color/purple_500"/>
+        app:tint="@color/colorPrimary"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_16dp"
         android:text="Unexpected Error Occurred"
-        android:textColor="#000"
-        android:textSize="22sp" />
+        android:textSize="16sp"
+        app:tint="@color/colorPrimary" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:alpha=".7"
+        android:layout_margin="@dimen/_8dp"
         android:gravity="center"
-        android:maxEms="11"
+        android:maxEms="13"
         android:text="Sorry for inconvenience. Please report this error to us"
-        android:textColor="#000"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/btnReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:minHeight="50dp"
-        android:paddingHorizontal="24dp"
-        android:text="Report"
-        android:textAllCaps="false"
-        android:textSize="22sp" />
+        android:layout_marginTop="@dimen/_16dp"
+        android:text="Report" />
 
     <LinearLayout
         android:id="@+id/bRestartApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:padding="@dimen/_8dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Restart App"
-            android:textColor="#000"
-            android:textSize="16sp" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="-3dp"
-            android:background="#000" />
+            android:layout_marginTop="-2dp"
+            android:background="@color/colorPrimaryDark" />
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/ibClose"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"/>
 </LinearLayout>

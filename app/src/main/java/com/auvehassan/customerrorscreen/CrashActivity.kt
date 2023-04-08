@@ -4,41 +4,37 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+
 import com.auvehassan.customerrorscreen.databinding.ActivityCrashBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class CrashActivity : AppCompatActivity() {
 
+    private var errorStackTrace: String?=null
     private lateinit var binding: ActivityCrashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG,"onCreate")
         binding = ActivityCrashBinding.inflate(layoutInflater)
-        ApplicationExceptionHandler.getThrowableFromIntent(intent).let {
-            Log.e(TAG, "Error: $it")
-        }
+
+        errorStackTrace = intent.getStringExtra(ApplicationExceptionHandler.INTENT_DATA_NAME)
         setOnClickListeners()
         setContentView(binding.root)
     }
 
     private fun setOnClickListeners() {
-        binding.btnReport.setOnClickListener {
-            lifecycleScope.launch {
-                binding.btnReport.isEnabled = false
-                binding.btnReport.text = "Reporting..."
-                delay(2000)
-                binding.btnReport.text = "Reported."
-                delay(1000)
-                finishAffinity()
-            }
-        }
-
+        binding.btnReport.setOnClickListener { openContactDialog() }
+        binding.ibClose.setOnClickListener { finishAffinity() }
         binding.bRestartApp.setOnClickListener {
             finishAffinity()
             startActivity(Intent(this, MainActivity::class.java))
         }
+    }
+
+    /* Contact user community dialog*/
+    private fun openContactDialog() {
+        Log.d(TAG, "errorStackTrace: $errorStackTrace")
+
     }
 
     companion object {

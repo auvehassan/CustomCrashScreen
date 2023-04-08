@@ -19,6 +19,7 @@ import kotlin.system.exitProcess
  * Gson().fromJSON(str,Throwable::class.java) function.
  */
 
+
 class ApplicationExceptionHandler private constructor(
     private val applicationContext: Context,
     private val defaultHandler: Thread.UncaughtExceptionHandler,
@@ -36,7 +37,7 @@ class ApplicationExceptionHandler private constructor(
 
     private fun launchActivity( applicationContext: Context, activity: Class<*>, exception: Throwable) {
         val crashedIntent = Intent(applicationContext, activity).also {
-            it.putExtra(INTENT_DATA_NAME, JsonFormatter.toJson(exception))
+            it.putExtra(INTENT_DATA_NAME, exception.stackTraceToString())
         }
 
         // Clears all previous activities. So backstack will be gone
@@ -46,8 +47,7 @@ class ApplicationExceptionHandler private constructor(
     }
 
     companion object {
-        private const val INTENT_DATA_NAME = "CrashData"
-        private const val TAG = "CustomExceptionHandler"
+        const val INTENT_DATA_NAME = "CrashData"
 
         fun initialize(
             applicationContext: Context,
@@ -59,19 +59,6 @@ class ApplicationExceptionHandler private constructor(
                 activityToBeLaunched
             )
             Thread.setDefaultUncaughtExceptionHandler(handler)
-        }
-
-        /**
-         * Gets throwable data from activity's intent.
-         * It'll return null if stringExtra has not been found or another reasons.
-         */
-        fun getThrowableFromIntent(intent: Intent): Throwable? {
-            return try {
-                Gson().fromJson(intent.getStringExtra(INTENT_DATA_NAME), Throwable::class.java)
-            } catch (e: Exception) {
-                Log.e(TAG, "getThrowableFromIntent: ", e)
-                null
-            }
         }
     }
 }
